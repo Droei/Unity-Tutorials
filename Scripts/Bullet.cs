@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 50f;
-    public int damage = 25;
+    [SerializeField] float speed = 10f;
 
-    void Update()
+    private void Update()
     {
         Vector3 currentPosition = transform.position;
         Vector3 direction = transform.forward;
@@ -13,13 +12,6 @@ public class Bullet : MonoBehaviour
 
         if (Physics.Raycast(currentPosition, direction, out RaycastHit hit, distance))
         {
-            //Enemy enemy = hit.collider.GetComponent<Enemy>();
-            //if (enemy != null)
-            //{
-            //    enemy.TakeDamage(damage);
-            //    Destroy(gameObject);
-            //}
-
             Destroy(gameObject);
         }
         else

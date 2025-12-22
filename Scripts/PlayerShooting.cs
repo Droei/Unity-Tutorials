@@ -4,10 +4,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] GameObject bullet;
+    [SerializeField] Bullet bullet;
     [SerializeField] Transform shootPos;
-    [SerializeField] Camera playerCamera;
-    [SerializeField] float fireRate = 0.15f;
+    [SerializeField] Camera camera;
+    [SerializeField] float fireRate = 0.5f;
 
     Coroutine fireRoutine;
 
@@ -20,7 +20,9 @@ public class PlayerShooting : MonoBehaviour
         else if (context.canceled)
         {
             if (fireRoutine != null)
+            {
                 StopCoroutine(fireRoutine);
+            }
         }
     }
 
@@ -28,13 +30,10 @@ public class PlayerShooting : MonoBehaviour
     {
         while (true)
         {
-            Fire();
+            Instantiate(bullet, shootPos.position, Quaternion.LookRotation(camera.transform.forward));
             yield return new WaitForSeconds(fireRate);
         }
     }
-
-    private void Fire()
-    {
-        Instantiate(bullet, shootPos.position, Quaternion.LookRotation(playerCamera.transform.forward));
-    }
 }
+
+
