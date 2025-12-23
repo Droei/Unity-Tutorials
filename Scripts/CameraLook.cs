@@ -7,12 +7,12 @@ public class CameraLook : MonoBehaviour
 
     float xRotation;
 
-    PlayerInputActions inputActions;
+    Playeractions inputActions;
     InputAction lookAction;
 
     private void Awake()
     {
-        inputActions = new PlayerInputActions();
+        inputActions = new Playeractions();
         lookAction = inputActions.Player.Look;
     }
 
